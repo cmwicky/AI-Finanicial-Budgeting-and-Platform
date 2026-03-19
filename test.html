@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinAI - Test Connection</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #0b1d3a; color: #f5f5dc; }
+        .test-section { background: #1c3b70; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        button { background: #d4c89f; color: #0b1d3a; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #b10552; color: #f5f5dc; }
+        pre { background: #102b54; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .success { color: #d4c89f; }
+        .error { color: #b10552; }
+    </style>
+</head>
+<body>
+    <h1>🚀 FinAI Backend Connection Test</h1>
+
+    <div class="test-section">
+        <h2>Test API Endpoints</h2>
+        <button onclick="testHealth()">Test Health Check</button>
+        <button onclick="testExpenses()">Test Expenses API</button>
+        <button onclick="testBudgets()">Test Budgets API</button>
+        <button onclick="testCategories()">Test Categories API</button>
+        <button onclick="testAIAdvisor()">Test AI Advisor API</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <pre id="results">Click a test button to begin...</pre>
+    </div>
+
+    <div class="test-section">
+        <h2>Frontend Pages</h2>
+        <p>Navigate to the main application pages:</p>
+        <ul>
+            <li><a href="index.html" style="color: #d4c89f;">🏠 Dashboard</a></li>
+            <li><a href="portfolio.html" style="color: #d4c89f;">🏦 Portfolio</a></li>
+            <li><a href="insights.html" style="color: #d4c89f;">🤖 AI Insights</a></li>
+            <li><a href="analysis.html" style="color: #d4c89f;">📊 Visual Analysis</a></li>
+            <li><a href="transactions.html" style="color: #d4c89f;">💳 Transactions</a></li>
+            <li><a href="settings.html" style="color: #d4c89f;">⚙️ Settings</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:8000';
+
+        function log(message, type = 'info') {
+            const results = document.getElementById('results');
+            const timestamp = new Date().toLocaleTimeString();
+            const colorClass = type === 'success' ? 'success' : type === 'error' ? 'error' : '';
+            results.innerHTML += `[${timestamp}] <span class="${colorClass}">${message}</span>\n`;
+            results.scrollTop = results.scrollHeight;
+        }
+
+        async function testHealth() {
+            try {
+                log('Testing health check...');
+                const response = await fetch(`${API_BASE_URL}/health`);
+                const data = await response.json();
+                if (response.ok) {
+                    log(`✅ Health check successful: ${JSON.stringify(data)}`, 'success');
+                } else {
+                    log(`❌ Health check failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log(`❌ Health check error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testExpenses() {
+            try {
+                log('Testing expenses API...');
+                // Test with a placeholder user_id
+                const response = await fetch(`${API_BASE_URL}/api/v1/expenses?user_id=1&limit=5`);
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`✅ Expenses API successful: Found ${data.length} expenses`, 'success');
+                } else if (response.status === 404) {
+                    log(`⚠️ Expenses API: No expenses found (expected for empty database)`, 'success');
+                } else {
+                    log(`❌ Expenses API failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log(`❌ Expenses API error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testBudgets() {
+            try {
+                log('Testing budgets API...');
+                const response = await fetch(`${API_BASE_URL}/api/v1/budgets?user_id=1`);
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`✅ Budgets API successful: Found ${data.length} budgets`, 'success');
+                } else if (response.status === 404) {
+                    log(`⚠️ Budgets API: No budgets found (expected for empty database)`, 'success');
+                } else {
+                    log(`❌ Budgets API failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log(`❌ Budgets API error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testCategories() {
+            try {
+                log('Testing categories API...');
+                const response = await fetch(`${API_BASE_URL}/api/v1/categories`);
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`✅ Categories API successful: Found ${data.length} categories`, 'success');
+                } else {
+                    log(`❌ Categories API failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log(`❌ Categories API error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testAIAdvisor() {
+            try {
+                log('Testing AI Advisor API...');
+                const response = await fetch(`${API_BASE_URL}/api/v1/ai-advisor/1/recommendations?budget_id=1`);
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`✅ AI Advisor API successful: Got ${data.length} recommendations`, 'success');
+                } else if (response.status === 404) {
+                    log(`⚠️ AI Advisor API: No data found (expected for empty database)`, 'success');
+                } else {
+                    log(`❌ AI Advisor API failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log(`❌ AI Advisor API error: ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-run health check on page load
+        window.addEventListener('load', () => {
+            setTimeout(testHealth, 1000);
+        });
+    </script>
+</body>
+</html>

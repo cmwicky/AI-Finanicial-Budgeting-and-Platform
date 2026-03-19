@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visual Analysis - FinAI</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="navbar"><h1>Visual Analysis</h1></div>
+  <div class="container">
+    <div class="sidebar">
+      <a href="index.html">🏠 Dashboard</a>
+      <a href="portfolio.html">🏦 Portfolio</a>
+      <a href="insights.html">🤖 AI Insights</a>
+      <a href="ai_agent.html">🤖 AI Assistant</a>
+      <a href="transactions.html">💳 Transactions</a>
+      <a href="settings.html">⚙️ Settings</a>
+    </div>
+    <div class="main">
+      <div class="card">
+        <h2>Portfolio Allocation (Pie)</h2>
+        <canvas id="portfolioChart"></canvas>
+      </div>
+      <div class="card">
+        <h2>Monthly Expenses (Bar)</h2>
+        <canvas id="expenseChart"></canvas>
+      </div>
+      <div class="card">
+        <h2>Market Trends (Line)</h2>
+        <canvas id="marketChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

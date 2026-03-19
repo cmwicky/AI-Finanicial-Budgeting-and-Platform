@@ -1,0 +1,105 @@
+/* Global Theme */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0b1d3a; /* Dark Blue */
+  color: #f5f5dc; /* Beige */
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #102b54;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #b10552;
+}
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #142f5f;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar a {
+  color: #b10552;
+  text-decoration: none;
+  margin: 0.8rem 0;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.sidebar a:hover {
+  color:  #b10552;
+}
+
+/* Main Dashboard */
+.main {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Cards */
+.card {
+  background-color: #1c3b70;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.card h2 {
+  margin-top: 0;
+  color: #b10552;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+table th, table td {
+  border: 1px solid #d4c89f;
+  padding: 0.6rem;
+  text-align: left;
+}
+table th {
+  background-color: #102b54;
+  color: #b10552;
+}
+table tr:nth-child(even) {
+  background-color: #142f5f;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #102b54;
+  color:  #b10552;
+}
+/*Chart Canvas Styling*/
+canvas {
+max-width: 100%;
+margin-top: 1rem;
+}
